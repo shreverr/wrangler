@@ -139,8 +139,14 @@ numberRange
  : Number ':' Number '=' value
  ;
 
+// Add new value types for byte size and time duration
 value
- : String | Number | Column | Bool
+ : String 
+ | Number 
+ | Column 
+ | Bool
+ | BYTE_SIZE    // Add support for byte size values
+ | TIME_DURATION // Add support for time duration values
  ;
 
 ecommand
@@ -310,4 +316,33 @@ fragment Int
 
 fragment Digit
  : [0-9]
+ ;
+
+// New lexer rules for byte sizes and time durations
+BYTE_SIZE
+ : Int BYTE_UNIT
+ ;
+
+TIME_DURATION
+ : Int TIME_UNIT
+ ;
+
+fragment BYTE_UNIT
+ : 'B'   // Bytes
+ | 'KB'  // Kilobytes
+ | 'MB'  // Megabytes
+ | 'GB'  // Gigabytes
+ | 'TB'  // Terabytes
+ | 'PB'  // Petabytes
+ ;
+
+fragment TIME_UNIT
+ : 'ms'     // milliseconds
+ | 's'      // seconds
+ | 'm'      // minutes
+ | 'h'      // hours
+ | 'd'      // days
+ | 'w'      // weeks
+ | 'M'      // months
+ | 'y'      // years
  ;

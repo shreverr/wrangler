@@ -1,0 +1,25 @@
+DeepSeek:
+
+-> Analyze the provided document and decompose it into a granular list of actionable steps (individual instructions).
+
+ChatGPT:
+
+-> Explain the structure and rules of the code in this file. What steps would be involved in adding new features to it?
+
+Cursor:
+
+-> Investigation phase:
+-> The parser needs to understand values like '10KB'. Where in the code should I look to add support for units of this type? There's something called 'NumberToken' - should I follow a similar approach?
+-> For durations like '150ms', would modifying the language definition file conflict with how numbers are currently understood? I need to check how text and number elements are defined.
+-> Found a file related to elements - it seems new unit types need to have their own logic for understanding them. How would units for byte size and time be different from regular numbers in how they are implemented?
+-> Having trouble with the language definition: added a 'BYTE_SIZE' element but getting conflicts. How should I structure the definitions for units (like KB/MB) without breaking what's already there?
+-> Testing how bytes are understood: should '10kb' (lowercase) be acceptable? The specification isn't clear - what's the project's standard for whether units are case-sensitive?
+-> For something that combines statistics, how does the system handle groups of data? I need to see how aggregated values are stored temporarily.
+-> The language definition generates code but gives errors on '10MB' values. Could the order of my definitions be wrong? Here's a part of the definition: <snippet>
+-> A test for byte size fails on decimal values ('1.5MB') - should we allow fractional values or only whole numbers like other elements?
+-> An integration test fails with 'Unknown element BYTE_SIZE' - did I forget to register this new element type somewhere in the element definitions?
+-> Review my code against the project's style guidelines and make any necessary adjustments.
+
+Gemini:
+
+-> Investigate the root causes of the following error: <error message>, and explore potential solutions.
